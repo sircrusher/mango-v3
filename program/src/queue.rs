@@ -8,6 +8,7 @@ use mango_logs::FillLog;
 use mango_macro::Pod;
 use num_enum::{IntoPrimitive, TryFromPrimitive};
 use safe_transmute::{self, trivial::TriviallyTransmutable};
+use serde::Serialize;
 use solana_program::account_info::AccountInfo;
 use solana_program::pubkey::Pubkey;
 use solana_program::sysvar::rent::Rent;
@@ -221,7 +222,7 @@ pub struct AnyEvent {
 }
 unsafe impl TriviallyTransmutable for AnyEvent {}
 
-#[derive(Copy, Clone, Debug, Pod)]
+#[derive(Copy, Clone, Debug, Pod, Serialize)]
 #[repr(C)]
 pub struct FillEvent {
     pub event_type: u8,
